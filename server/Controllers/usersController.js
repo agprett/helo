@@ -8,7 +8,7 @@ module.exports = {
     const [existingUser] = await db.check_user([username])
 
     if(!existingUser){
-      return res.status(403).send('Username or password incorrect')
+      return res.status(404).send('Username or password incorrect')
     }
 
     const authenticated = bcrypt.compareSync(password, existingUser.password)
@@ -20,15 +20,16 @@ module.exports = {
 
       res.status(200).send(req.session.user)
     } else {
-      res.status(403).send('Username or password incorrect')
+      res.status(404).send('Username or password incorrect')
     }
   },
 
-  logout: async(req, res) => {
-    req.session.destory()
+  logout: (req, res) => {
+    console.log('hit logout')
+    req.session.destroy()
     res.sendStatus(200)
   },
-
+  
   register: async (req, res) => {
     const db = req.app.get('db')
     const {username, password, profile_pic} = req.body

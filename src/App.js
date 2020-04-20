@@ -1,26 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {withRouter, useLocation} from 'react-router-dom'
+import routes from './routes'
+import Nav from './Components/Nav/Nav'
 
 function App() {
+  const location = useLocation()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {location.pathname === '/' ? null : <Nav />}
+      {routes}
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);
