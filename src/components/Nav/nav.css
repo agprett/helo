@@ -3,4 +3,31 @@
   width: 100px;
   background-image: linear-gradient(0deg,#ff7abe,#ff9770);
   box-shadow: 10px 0 20px 0 rgba(0,0,0,.1), 5px 0 5px rgba(0,0,0,.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+.nav-user-pic {
+  height: 75px;
+  width: 75px;
+  margin: 15px;
+}
+
+.nav-username {
+  color: white;
+}
+
+.dash-img {
+  height: 40px;
+  width: 40px;
+  margin: 20px 0px;
+}
+
+.logout {
+  position: fixed;
+  bottom: 10px;
 }

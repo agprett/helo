@@ -32,7 +32,7 @@ module.exports = {
   
   register: async (req, res) => {
     const db = req.app.get('db')
-    const {username, password, profile_pic} = req.body
+    const {username, password} = req.body
 
     const [existingUser] = await db.check_user([username])
 
@@ -43,7 +43,11 @@ module.exports = {
     const salt = bcrypt.genSaltSync(10)
     const hash = bcrypt.hashSync(password, salt)
 
-    const [newUser] = await db.register_user([username, hash, profile_pic])
+    const [id] = await db.register_user([username, hash])
+
+    const profile_pic = `https://robohash.org/${id.user_id}`
+
+    const [newUser] = await db.add_photo([id.user_id, profile_pic])
 
     req.session.user = newUser
 
