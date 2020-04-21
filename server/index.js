@@ -21,7 +21,7 @@ app.post('/api/auth/logout', usersCtrl.logout)
 app.post('/api/auth/register', usersCtrl.register)
 app.get('/api/auth/me', usersCtrl.getUser)
 
-app.get('/api/posts', postsCtrl.getPosts)
+app.post('/api/posts', postsCtrl.getPosts)
 app.get('/api/post/:postid', postsCtrl.getPost)
 app.post('/api/post', postsCtrl.addPost)
 app.put('/api/post/:postid', postsCtrl.updatePost)

@@ -1,0 +1,21 @@
+.dash-back {
+  height: 100vh;
+  width: 100vw;
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.dash-search {
+  width: 75%;
+  padding: 15px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+.posts-display {
+  background-color: white;
+}

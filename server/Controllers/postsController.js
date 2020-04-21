@@ -1,10 +1,24 @@
 module.exports = {
   getPosts: async(req, res) => {
     const db = req.app.get('db')
+    const {search, userposts} = req.body
     const user_id = req.session.userid
-
-    const posts = await db.get_posts([user_id])
-
+    let posts = []
+    
+    if(!userposts){
+      if(search){
+        posts = await db.get_some_posts([user_id, search])
+      } else {
+        posts = await db.get_posts([user_id])
+      }
+    } else {
+      if(search){
+        posts = await db.get_some_posts([0, search])
+      } else {
+        posts = await db.get_posts([0])
+      }
+    }
+    
     res.status(200).send(posts)
   },
   
