@@ -16,6 +16,7 @@ module.exports = {
     if(authenticated){
       delete existingUser.password
 
+      req.session.userid = existingUser.user_id
       req.session.user = existingUser
 
       res.status(200).send(req.session.user)
@@ -48,6 +49,8 @@ module.exports = {
     const profile_pic = `https://robohash.org/${id.user_id}`
 
     const [newUser] = await db.add_photo([id.user_id, profile_pic])
+
+    req.session.userid = id.user_id
 
     req.session.user = newUser
 

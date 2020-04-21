@@ -1,11 +1,7 @@
-const bcrypt = require('bcryptjs')
-
 module.exports = {
   getPosts: async(req, res) => {
     const db = req.app.get('db')
-    const {userid} = req.params
-
-    const user_id = parseInt(userid)
+    const user_id = req.session.userid
 
     const posts = await db.get_posts([user_id])
 
@@ -37,9 +33,7 @@ module.exports = {
   addPost: async(req, res) => {
     const db = req.app.get('db')
     const {title, img, content} = req.body
-    const {userid} = req.params
-
-    const user_id = parseInt(userid)
+    const user_id = req.session.userid
 
     await db.add_post([title, img, content, user_id])
 
@@ -52,7 +46,6 @@ module.exports = {
     const {postid} = req.params
 
     const post_id = parseInt(postid)
-
 
     await db.update_post([title, img, content, post_id])
 

@@ -17,19 +17,18 @@ class Nav extends React.Component {
     .then(res => {
       this.props.getUser(res.data)
     })
-    .catch(err => {
-      console.log(err)
+    .catch(() => {
       this.props.history.push('/')
     })
   }
 
   logout(){
     axios.post('/api/auth/logout')
-    .then(res => {
+    .then(() => {
       this.props.logoutUser()
       this.props.history.push('/')
     })
-    .catch(err => console.log(err))
+    .catch(() => alert('Failed to log out'))
   }
 
   render(){
