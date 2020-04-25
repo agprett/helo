@@ -61,6 +61,7 @@ class Auth extends React.Component {
           <div className='auth-input'>
             Password:
             <input
+              type='password'
               name='password'
               onChange={event => this.handleChange(event)}
             />
